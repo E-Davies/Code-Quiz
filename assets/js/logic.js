@@ -18,9 +18,11 @@ startBtn.addEventListener('click', () => {
         startingTime--;
         time.textContent = startingTime;
         
-    //Once startingTime reaches zero it cancels the setInterval with clearInterval(timer) and then renders the end-screen.
-        if(startingTime === 0){
+    //Once startingTime reaches zero or less it cancels the setInterval with clearInterval(timer) and then renders the end-screen.
+        if(startingTime <= 0){
             clearInterval(timer) 
+            startingTime = 0; //set startingTimer to 0 beacuse if incorrect answers given - it might take it to a minus number
+            time.textContent = startingTime;
             endScreen.setAttribute('class', '');
             questionScreen.setAttribute('class', 'hide');
             finalScore.textContent = startingTime;

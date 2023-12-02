@@ -1,5 +1,6 @@
 let question = document.getElementById('question-title');
 let choicesDiv = document.getElementById('choices');
+let feedback = document.getElementById('feedback');
 
 
 let currentQuestionIndex = 0 // every time the user answers a Q -> increment currentQuestionIndex to render next Q
@@ -38,6 +39,12 @@ const questionsArray = [
     },
 ]
 
+// console.log(questionsArray);
+
+const option1 = document.createElement('button');
+const option2 = document.createElement('button');
+const option3 = document.createElement('button');
+const option4 = document.createElement('button');
 
 //create a func to render a Q (this can then be used multiple times - like the todo list task for the rendering)
 function renderQuestion(){
@@ -45,68 +52,81 @@ function renderQuestion(){
     question.textContent = questionsArray[currentQuestionIndex].title;
     
     //render first answer option for question
-    const option1 = document.createElement('button');
     option1.setAttribute('data-choiceindex', 0);
     option1.textContent = questionsArray[currentQuestionIndex].choice[0];
     choicesDiv.appendChild(option1);
 
     //render second answer option for question
-    const option2 = document.createElement('button');
     option2.setAttribute('data-choiceindex', 1);
     option2.textContent = questionsArray[currentQuestionIndex].choice[1];
     choicesDiv.appendChild(option2);
 
     //render third answer option for question
-    const option3 = document.createElement('button');
     option3.setAttribute('data-choiceindex', 2);
     option3.textContent = questionsArray[currentQuestionIndex].choice[2];
     choicesDiv.appendChild(option3);
 
     //render fourth answer option for question
-    const option4 = document.createElement('button');
     option4.setAttribute('data-choiceindex', 3);
     option4.textContent = questionsArray[currentQuestionIndex].choice[3];
     choicesDiv.appendChild(option4);
 };
 
+//updates text of question h2 and buttons
+function nextQuestion() {
+    question.textContent = questionsArray[currentQuestionIndex].title;
+    option1.textContent = questionsArray[currentQuestionIndex].choice[0]; 
+    option2.textContent = questionsArray[currentQuestionIndex].choice[1];
+    option3.textContent = questionsArray[currentQuestionIndex].choice[2];
+    option4.textContent = questionsArray[currentQuestionIndex].choice[3];
+};
 
 
 choicesDiv.addEventListener('click', (event) => {
     if(event.target.matches('button')){
 
-        //console.log(event.target.dataset);
-
         //Turn the DOM dataset and correctAnswer objects into strings so they can be compared to see if they match/correct answer clicked
         let eventTargetDataset = JSON.stringify(event.target.dataset);
         let AnswerNeeded = JSON.stringify(questionsArray[currentQuestionIndex].correctAnswer);
-        // console.log(eventTargetDataset);
-        // console.log(AnswerNeeded);
-
+        
         if(eventTargetDataset === AnswerNeeded){
             console.log('correct answer clicked');
-            // if Correct - display 'Correct' with a setAttribute('class', 'feedback')
-            const correct = document.createElement('p');
-            correct.setAttribute('class', 'feedback');
-            correct.textContent = 'Correct';
-            choicesDiv.appendChild(correct);
-            //load next question - currentQuestionIndex++ and remove correct/wrong (after a setTimeOut..?)
-            currentQuestionIndex++;
-            renderQuestion(); // need to remove question to then render new question - Do I delete previous render or over write it...?
-
+            // if Correct - change feedback text to 'Correct' 
+            feedback.textContent = 'Correct';
+            
         }else{
             console.log('incorrect answer clicked');
-            // if wrong - display 'Wrong' with a setAttribute('class', 'feedback')
-            const incorrect = document.createElement('p');
-            incorrect.setAttribute('class', 'feedback');
-            incorrect.textContent = 'Wrong';
-            choicesDiv.appendChild(incorrect);
-
+            // if wrong - change feedback text to 'Wrong' 
+            feedback.textContent = 'Wrong';
             //and remove 10secs from timer
             startingTime = startingTime - 10; //timer goes below 0 - it keeps running! - **** FIX ****
+        }
 
-            //load next question - currentQuestionIndex++ and remove correct/wrong (after a setTimeOut..?)
-            currentQuestionIndex++;
-            renderQuestion(); // need to remove question to then render new question - Do I delete previous render or over write it...?
+        //removes the 'hide' class from feedback so it's visable
+        feedback.setAttribute('class', 'feedback');
+
+        //after 2 secs - adds the 'hide' class to feedback so it disappears 
+        let removeFeedback = setTimeout(() => {
+            feedback.setAttribute('class', 'feedback hide');
+        }, 2000);
+
+        //load next question - currentQuestionIndex++ updates the question h2 and button content
+        //nextQuestion() renders those updates 
+        currentQuestionIndex++;
+        nextQuestion();       
+        
+        if(currentQuestionIndex > questionsArray.length){
+            clearInterval(timer) 
+            time.textContent = startingTime;
+            endScreen.setAttribute('class', '');
+            questionScreen.setAttribute('class', 'hide');
+            finalScore.textContent = startingTime;
         }
     }
 });
+
+
+//when last question is answered - go to end screen and provide timer score
+//                                                                          ******DONE******* stop timer from going below 0 - once it hits zero go to end screen (after incorrect answers)
+//enter initials and add score to higscores - in order
+//save highscores to local storage
