@@ -5,7 +5,7 @@ let feedback = document.getElementById('feedback');
 
 let currentQuestionIndex = 0 // every time the user answers a Q -> increment currentQuestionIndex to render next Q
 
-
+// console.log(startingTime);
 //an array of objects to hold each question, multiple choice options & the correct answer
 const questionsArray = [
     {
@@ -91,42 +91,40 @@ choicesDiv.addEventListener('click', (event) => {
         
         if(eventTargetDataset === AnswerNeeded){
             console.log('correct answer clicked');
-            // if Correct - change feedback text to 'Correct' 
+            // if user clicks the correct answer - change feedback text to 'Correct' 
             feedback.textContent = 'Correct';
             
         }else{
             console.log('incorrect answer clicked');
-            // if wrong - change feedback text to 'Wrong' 
+            // if user clicks wrong answer - change feedback text to 'Wrong' 
             feedback.textContent = 'Wrong';
             //and remove 10secs from timer
-            startingTime = startingTime - 10; //timer goes below 0 - it keeps running! - **** FIX ****
+            startingTime = startingTime - 10;
         }
 
         //removes the 'hide' class from feedback so it's visable
         feedback.setAttribute('class', 'feedback');
 
-        //after 2 secs - adds the 'hide' class to feedback so it disappears 
+        //after 3 secs - adds the 'hide' class to feedback so it disappears 
         let removeFeedback = setTimeout(() => {
             feedback.setAttribute('class', 'feedback hide');
-        }, 2000);
-
-        //load next question - currentQuestionIndex++ updates the question h2 and button content
-        //nextQuestion() renders those updates 
-        currentQuestionIndex++;
-        nextQuestion();       
+        }, 3000);
         
-        if(currentQuestionIndex > questionsArray.length){
-            clearInterval(timer) 
-            time.textContent = startingTime;
-            endScreen.setAttribute('class', '');
-            questionScreen.setAttribute('class', 'hide');
-            finalScore.textContent = startingTime;
+        //currentQuestionIndex++ updates the question h2 and button content to the next one in the questionsArray
+        currentQuestionIndex++;
+ 
+        if(currentQuestionIndex === questionsArray.length){
+            finishQuiz();
+        }else{
+            //nextQuestion() renders the updated question h2 and button content 
+            nextQuestion(); 
         }
     }
 });
 
 
-//when last question is answered - go to end screen and provide timer score
-//                                                                          ******DONE******* stop timer from going below 0 - once it hits zero go to end screen (after incorrect answers)
+//                                                       ******DONE******* when last question is answered - go to end screen and provide timer score
+//                                                       ******DONE******* stop timer from going below 0 - once it hits zero go to end screen (after incorrect answers)
+//                                                       ******DONE******* stop timer when last Q is answered and doesn't change final score 
 //enter initials and add score to higscores - in order
 //save highscores to local storage
