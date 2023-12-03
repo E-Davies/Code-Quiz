@@ -11,4 +11,5 @@ highscores.appendChild(li);
 
 clearHightscores.addEventListener('click', () => {
     highscores.remove();
+    localStorage.clear();
 });
