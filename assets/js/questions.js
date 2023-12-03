@@ -5,7 +5,6 @@ let feedback = document.getElementById('feedback');
 
 let currentQuestionIndex = 0 // every time the user answers a Q -> increment currentQuestionIndex to render next Q
 
-// console.log(startingTime);
 //an array of objects to hold each question, multiple choice options & the correct answer
 const questionsArray = [
     {
@@ -37,9 +36,7 @@ const questionsArray = [
         choice: ['defo 1', 'defo 2', 'defo 3', 'defo 4'],
         correctAnswer: {choiceindex: '1'} //this tells you that the correct answer is at index 1 of the choice array - so that is 'defo 2' 
     },
-]
-
-// console.log(questionsArray);
+];
 
 const option1 = document.createElement('button');
 const option2 = document.createElement('button');
@@ -121,10 +118,3 @@ choicesDiv.addEventListener('click', (event) => {
         }
     }
 });
-
-
-//                                                       ******DONE******* when last question is answered - go to end screen and provide timer score
-//                                                       ******DONE******* stop timer from going below 0 - once it hits zero go to end screen (after incorrect answers)
-//                                                       ******DONE******* stop timer when last Q is answered and doesn't change final score 
-//enter initials and add score to higscores - in order
-//save highscores to local storage
