@@ -66,7 +66,8 @@ submitBtn.addEventListener('click', () => {
     }
 });
 
-
+/**************** TODOS ************************/
 //add multiple scores and arrange by highest score
 //write proper questions
 //set proper timer length
+// add sound effects
