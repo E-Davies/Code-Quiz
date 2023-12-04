@@ -1,8 +1,7 @@
 let highscores = document.getElementById('highscores');
 let clearHightscores = document.getElementById('clear');
 
-
-let initial = localStorage.getItem('initials').toLocaleUpperCase();
+let initial = localStorage.getItem('initials');
 let score = localStorage.getItem('score');
 
 let li = document.createElement('li');

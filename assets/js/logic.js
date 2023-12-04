@@ -5,7 +5,7 @@ let time = document.getElementById('time');
 let endScreen = document.getElementById('end-screen');
 let finalScore = document.getElementById('final-score');
 
-let startingTime = 10; 
+let startingTime = 50; 
 
 function finishQuiz(){
     time.textContent = '';
@@ -46,18 +46,27 @@ let initials = document.getElementById('initials');
 
 
 submitBtn.addEventListener('click', () => {
-    //add scores to local storage
-    localStorage.setItem('initials', initials.value);
-    localStorage.setItem('score', finalScore.textContent);
+    if(initials.value === ''){ //don't allow an empty initals entry
+        feedback.textContent = 'Please add your initials';
+        feedback.setAttribute('class', 'feedback');
+        return;
+    }else{
+        //add scores to local storage
+        localStorage.setItem('initials', initials.value.toLocaleUpperCase());
+        localStorage.setItem('score', finalScore.textContent);
 
-    //provide user with msg so that they know their score has been added to the score board
-    feedback.textContent = 'Score added to Highscores';
-    feedback.setAttribute('class', 'feedback');
+        //provide user with msg so that they know their score has been added to the score board
+        feedback.textContent = 'Score added to Highscores';
+        feedback.setAttribute('class', 'feedback');
 
-    //after submit button is pressed - disable button so you don't add the initals & score multiple times
-    submitBtn.disabled = true;
-    submitBtn.style.backgroundColor = '#8570a5';
-    submitBtn.style.cursor = 'not-allowed';
+        //after submit button is pressed - disable button so you don't add the same initals & score for that round multiple times
+        submitBtn.disabled = true;
+        submitBtn.style.backgroundColor = '#8570a5';
+        submitBtn.style.cursor = 'not-allowed';
+    }
 });
 
 
+//add multiple scores and arrange by highest score
+//write proper questions
+//set proper timer length

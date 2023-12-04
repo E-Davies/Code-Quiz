@@ -38,46 +38,19 @@ const questionsArray = [
     },
 ];
 
-const option1 = document.createElement('button');
-const option2 = document.createElement('button');
-const option3 = document.createElement('button');
-const option4 = document.createElement('button');
-
-//create a func to render a Q (this can then be used multiple times - like the todo list task for the rendering)
 function renderQuestion(){
-    //render question
+    //clear any previous elements
+    choicesDiv.innerHTML = '';
+    // render question
     question.textContent = questionsArray[currentQuestionIndex].title;
-    
-    //render first answer option for question
-    option1.setAttribute('data-choiceindex', 0);
-    option1.textContent = questionsArray[currentQuestionIndex].choice[0];
-    choicesDiv.appendChild(option1);
-
-    //render second answer option for question
-    option2.setAttribute('data-choiceindex', 1);
-    option2.textContent = questionsArray[currentQuestionIndex].choice[1];
-    choicesDiv.appendChild(option2);
-
-    //render third answer option for question
-    option3.setAttribute('data-choiceindex', 2);
-    option3.textContent = questionsArray[currentQuestionIndex].choice[2];
-    choicesDiv.appendChild(option3);
-
-    //render fourth answer option for question
-    option4.setAttribute('data-choiceindex', 3);
-    option4.textContent = questionsArray[currentQuestionIndex].choice[3];
-    choicesDiv.appendChild(option4);
+    //loop over the choices for that question and render a button for each choice
+    for(let i = 0; i < questionsArray[currentQuestionIndex].choice.length; i++){
+        let btn = document.createElement('button');
+        btn.setAttribute('data-choiceindex', i);
+        btn.textContent = questionsArray[currentQuestionIndex].choice[i];
+        choicesDiv.appendChild(btn);
+    }
 };
-
-//updates text of question h2 and buttons
-function nextQuestion() {
-    question.textContent = questionsArray[currentQuestionIndex].title;
-    option1.textContent = questionsArray[currentQuestionIndex].choice[0]; 
-    option2.textContent = questionsArray[currentQuestionIndex].choice[1];
-    option3.textContent = questionsArray[currentQuestionIndex].choice[2];
-    option4.textContent = questionsArray[currentQuestionIndex].choice[3];
-};
-
 
 choicesDiv.addEventListener('click', (event) => {
     if(event.target.matches('button')){
@@ -92,7 +65,7 @@ choicesDiv.addEventListener('click', (event) => {
             feedback.textContent = 'Correct';
             
         }else{
-            console.log('incorrect answer clicked');
+            console.log('incorrect answer clicked, 10secs deducted');
             // if user clicks wrong answer - change feedback text to 'Wrong' 
             feedback.textContent = 'Wrong';
             //and remove 10secs from timer
@@ -107,14 +80,15 @@ choicesDiv.addEventListener('click', (event) => {
             feedback.setAttribute('class', 'feedback hide');
         }, 3000);
         
-        //currentQuestionIndex++ updates the question h2 and button content to the next one in the questionsArray
+        //currentQuestionIndex++ updates the question and button content to the next one in the questionsArray
         currentQuestionIndex++;
  
         if(currentQuestionIndex === questionsArray.length){
             finishQuiz();
         }else{
-            //nextQuestion() renders the updated question h2 and button content 
-            nextQuestion(); 
+            //renderQuestion() renders the next question & answers from the questionsArray because currentQuestionIndex has increased
+            renderQuestion();
+            
         }
     }
 });
