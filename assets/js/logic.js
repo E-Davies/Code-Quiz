@@ -5,6 +5,7 @@ let time = document.getElementById('time');
 let endScreen = document.getElementById('end-screen');
 let finalScore = document.getElementById('final-score');
 
+
 let startingTime = 50; 
 
 function finishQuiz(){
@@ -67,7 +68,5 @@ submitBtn.addEventListener('click', () => {
 });
 
 /**************** TODOS ************************/
-//add multiple scores and arrange by highest score
-//write proper questions
-//set proper timer length
-// add sound effects
+// check highscore page for "null: null" when no scores are saved in local storage
+// add multiple scores and arrange by highest score

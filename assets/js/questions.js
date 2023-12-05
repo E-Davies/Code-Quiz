@@ -1,7 +1,8 @@
 let question = document.getElementById('question-title');
 let choicesDiv = document.getElementById('choices');
 let feedback = document.getElementById('feedback');
-
+let correctSound = new Audio('./assets/sfx/correct.wav');
+let incorrectSound = new Audio('./assets/sfx/incorrect.wav');
 
 let currentQuestionIndex = 0 // every time the user answers a Q -> increment currentQuestionIndex to render next Q
 
@@ -61,11 +62,15 @@ choicesDiv.addEventListener('click', (event) => {
         
         if(eventTargetDataset === AnswerNeeded){
             console.log('correct answer clicked');
+            //plays correct noise
+            correctSound.play();
             // if user clicks the correct answer - change feedback text to 'Correct' 
             feedback.textContent = 'Correct';
             
         }else{
             console.log('incorrect answer clicked, 10secs deducted');
+            //plays incorrect noise
+            incorrectSound.play();
             // if user clicks wrong answer - change feedback text to 'Wrong' 
             feedback.textContent = 'Wrong';
             //and remove 10secs from timer
