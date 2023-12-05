@@ -3,7 +3,7 @@ let clearHightscores = document.getElementById('clear');
 
 let storedHighscore = JSON.parse(localStorage.getItem('highscore'));
 
-function renderHighscores(){
+// function renderHighscores(){
 
     for(let i = 0; i < storedHighscore.length; i++){
         let storedHighscores = storedHighscore[i];
@@ -12,8 +12,9 @@ function renderHighscores(){
         li.textContent = storedHighscores;
         highscores.appendChild(li);
     }
-};
-renderHighscores();
+// };
+
+// renderHighscores();
 
 clearHightscores.addEventListener('click', () => {
     highscores.remove();

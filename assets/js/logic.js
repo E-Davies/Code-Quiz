@@ -13,6 +13,7 @@ function finishQuiz(){
     endScreen.setAttribute('class', '');
     questionScreen.setAttribute('class', 'hide');
     finalScore.textContent = startingTime;
+    console.log('Quiz finished');
 };
 
 startBtn.addEventListener('click', () => {
@@ -33,7 +34,6 @@ startBtn.addEventListener('click', () => {
             finishQuiz();
         }else if(currentQuestionIndex === questionsArray.length){ //if all questions are answered - finish quiz
             clearInterval(timer);
-            finishQuiz();
         }
         startingTime--;
     }, 1000); // 1sec (1000ms) interval
@@ -45,8 +45,6 @@ startBtn.addEventListener('click', () => {
 let submitBtn = document.getElementById('submit');
 let initialsInput = document.getElementById('initials');
 
-
-
 let highscore = [];
 
 submitBtn.addEventListener('click', () => {
@@ -55,11 +53,11 @@ submitBtn.addEventListener('click', () => {
         feedback.setAttribute('class', 'feedback');
         return;
     }else{
-        
         let newScore = `${initialsInput.value.toLocaleUpperCase()}: ${finalScore.textContent}`;
-
+        //retrive any scores already in local storage
+        highscore = (JSON.parse(localStorage.getItem('highscore')) || []);
+        // add further score to that array
         highscore.push(newScore);
-
         //add scores to local storage
         localStorage.setItem('highscore', JSON.stringify(highscore));
     
@@ -77,5 +75,5 @@ submitBtn.addEventListener('click', () => {
 
 
 /**************** TODOS ************************/
-// add multiple scores 
-        //and maybe arrange by highest score...?
+// Arrange highscores by highest score
+
