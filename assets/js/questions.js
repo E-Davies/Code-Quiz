@@ -8,33 +8,33 @@ let currentQuestionIndex = 0 // every time the user answers a Q -> increment cur
 //an array of objects to hold each question, multiple choice options & the correct answer
 const questionsArray = [
     {
-        title: `${currentQuestionIndex + 1}. This is question 1`,
-        choice: ['answer 1', 'answer 2', 'answer 3', 'answer 4'],
-        correctAnswer: {choiceindex: '0'} //this tells you that the correct answer is at index 0 of the choice array - so that is 'answer 1'
+        title: `Commonly used data types DO NOT include:`,
+        choice: ['1. Strings', '2. Booleans', '3. Alerts', '4. Numbers'],
+        correctAnswer: {choiceindex: '2'} //this tells you that the correct answer is at index 2 of the choice array - so that is '3. Alerts'
     },
 
     {
-        title: `${currentQuestionIndex + 1}. This is question 2`,
-        choice: ['1', '2', '3', '4'],
-        correctAnswer: {choiceindex: '1'} //this tells you that the correct answer is at index 1 of the choice array - so that is '2'
+        title: `The condition in an if/else statement is enclosed with...`,
+        choice: ['1. Quotes', '2. Parenthesis', '3. Curly Brackets', '4. Square Brackets'],
+        correctAnswer: {choiceindex: '1'} //this tells you that the correct answer is at index 1 of the choice array - so that is '2. Parenthesis'
     },
 
     {
-        title: `${currentQuestionIndex + 1}. This is question 3`,
-        choice: ['a 1', 'a 2', 'a 3', 'a 4'],
-        correctAnswer: {choiceindex: '2'} //this tells you that the correct answer is at index 2 of the choice array - so that is 'a 3'
+        title: `String values must be enclosed within what, when being assigned to variables`,
+        choice: ['1. Quotes', '2. Curly Brackets', '3. Square Brackets', '4. Nothing'],
+        correctAnswer: {choiceindex: '0'} //this tells you that the correct answer is at index 0 of the choice array - so that is 'Quotes'
     },
 
     {
-        title: `${currentQuestionIndex + 1}. This is question 4`,
-        choice: ['its 1', 'its 2', 'its 3', 'its 4'],
-        correctAnswer: {choiceindex: '3'} //this tells you that the correct answer is at index 3 of the choice array - so that is 'its 4' 
+        title: `A useful tool used during development and debugging to print content to the debugger is:`,
+        choice: ['1. function', '2. Terminal', '3. if/else statement', '4. console.log()'],
+        correctAnswer: {choiceindex: '3'} //this tells you that the correct answer is at index 3 of the choice array - so that is '4. console.log()' 
     },
 
     {
-        title: `${currentQuestionIndex + 1}. This is question 5`,
-        choice: ['defo 1', 'defo 2', 'defo 3', 'defo 4'],
-        correctAnswer: {choiceindex: '1'} //this tells you that the correct answer is at index 1 of the choice array - so that is 'defo 2' 
+        title: `What does the following line of code return: let sum = "1" + "2";`,
+        choice: ['1. 3', '2. "12"', '3. 12', '4. 1 + 2'],
+        correctAnswer: {choiceindex: '1'} //this tells you that the correct answer is at index 1 of the choice array - so that is '2. "12"' 
     },
 ];
 
@@ -42,7 +42,7 @@ function renderQuestion(){
     //clear any previous elements
     choicesDiv.innerHTML = '';
     // render question
-    question.textContent = questionsArray[currentQuestionIndex].title;
+    question.textContent = `${currentQuestionIndex + 1}. ${questionsArray[currentQuestionIndex].title}`;
     //loop over the choices for that question and render a button for each choice
     for(let i = 0; i < questionsArray[currentQuestionIndex].choice.length; i++){
         let btn = document.createElement('button');

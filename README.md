@@ -12,9 +12,23 @@ This has been achieved by:
 * The user can enter their initials to add their score to the Highscores page.
     * The user can clear the highscores page.
 
-![screenshot of application asking user for valid input](./images/user-error.JPG) 
+    
 
-![screenshot of password presented to the user on the browser](./images/generated-password.JPG)
+Clicking correct answer - a 'correct' msg is displayed:
+
+![screenshot of quiz questions and answers](./assets/images/clicking-choice.JPG) 
+
+![screenshot of correct msg display](./assets/images/feedback-correct-displayed.JPG) 
+
+Clicking wrong answer - a 'wrong' msg is displayed and time is reduced:
+
+![screenshot of quiz questions and answers](./assets/images/clicking-wrong-answer.JPG)
+
+![screenshot of wrong msg display and timer is reduced](./assets/images/feedback-wrong-displayed.JPG)
+
+Submit button becomes disabled after score is submitted to highscores:
+
+![Disabled submit button](./assets/images/disabled-submit-btn.JPG)
 
  
 
