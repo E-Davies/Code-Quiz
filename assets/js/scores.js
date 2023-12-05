@@ -3,18 +3,21 @@ let clearHightscores = document.getElementById('clear');
 
 let storedHighscore = JSON.parse(localStorage.getItem('highscore'));
 
-// function renderHighscores(){
+function renderHighscores(){
+    if(!storedHighscore){
+        return;
+    }else{
+        for(let i = 0; i < storedHighscore.length; i++){
+            let storedHighscores = storedHighscore[i];
 
-    for(let i = 0; i < storedHighscore.length; i++){
-        let storedHighscores = storedHighscore[i];
+            let li = document.createElement('li');
+            li.textContent = storedHighscores;
+            highscores.appendChild(li);
+        }
+    };
+};
 
-        let li = document.createElement('li');
-        li.textContent = storedHighscores;
-        highscores.appendChild(li);
-    }
-// };
-
-// renderHighscores();
+renderHighscores();
 
 clearHightscores.addEventListener('click', () => {
     highscores.remove();
