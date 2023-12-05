@@ -34,6 +34,7 @@ startBtn.addEventListener('click', () => {
             finishQuiz();
         }else if(currentQuestionIndex === questionsArray.length){ //if all questions are answered - finish quiz
             clearInterval(timer);
+            finishQuiz();
         }
         startingTime--;
     }, 1000); // 1sec (1000ms) interval

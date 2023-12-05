@@ -14,19 +14,19 @@ This has been achieved by:
 
     
 
-Clicking correct answer - a 'correct' msg is displayed:
+When clicking a correct answer - a 'correct' msg is displayed and a correct audio is played:
 
 ![screenshot of quiz questions and answers](./assets/images/clicking-choice.JPG) 
 
 ![screenshot of correct msg display](./assets/images/feedback-correct-displayed.JPG) 
 
-Clicking wrong answer - a 'wrong' msg is displayed and time is reduced:
+When clicking a wrong answer - a 'wrong' msg is displayed, time is reduced and an incorrect audio is played:
 
 ![screenshot of quiz questions and answers](./assets/images/clicking-wrong-answer.JPG)
 
 ![screenshot of wrong msg display and timer is reduced](./assets/images/feedback-wrong-displayed.JPG)
 
-Submit button becomes disabled after score is submitted to highscores:
+Submit button becomes disabled after score is submitted to highscores to prevent multiples of that score being added:
 
 ![Disabled submit button](./assets/images/disabled-submit-btn.JPG)
 

@@ -63,6 +63,7 @@ choicesDiv.addEventListener('click', (event) => {
         if(eventTargetDataset === AnswerNeeded){
             console.log('correct answer clicked');
             //plays correct noise
+            correctSound.currentTime= 0; //stops sound and rewinds back to beginning so if you click quickly on 2 consecutive correct answers, you hear the sound twice
             correctSound.play();
             // if user clicks the correct answer - change feedback text to 'Correct' 
             feedback.textContent = 'Correct';
@@ -70,6 +71,7 @@ choicesDiv.addEventListener('click', (event) => {
         }else{
             console.log('incorrect answer clicked, 10secs deducted');
             //plays incorrect noise
+            incorrectSound.currentTime= 0; //stops sound and rewinds back to beginning so if you click quickly on 2 consecutive wrong answers, you hear the sound twice
             incorrectSound.play();
             // if user clicks wrong answer - change feedback text to 'Wrong' 
             feedback.textContent = 'Wrong';
@@ -89,7 +91,7 @@ choicesDiv.addEventListener('click', (event) => {
         currentQuestionIndex++;
  
         if(currentQuestionIndex === questionsArray.length){
-            finishQuiz();
+            return;
         }else{
             //renderQuestion() renders the next question & answers from the questionsArray because currentQuestionIndex has increased
             renderQuestion();
