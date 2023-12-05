@@ -43,19 +43,26 @@ startBtn.addEventListener('click', () => {
 /*********************** end-screen => adding initials & score to local storage *****************************************/
 
 let submitBtn = document.getElementById('submit');
-let initials = document.getElementById('initials');
+let initialsInput = document.getElementById('initials');
 
+
+
+let highscore = [];
 
 submitBtn.addEventListener('click', () => {
-    if(initials.value === ''){ //don't allow an empty initals entry
+    if(initialsInput.value === ''){ //don't allow an empty initals entry
         feedback.textContent = 'Please add your initials';
         feedback.setAttribute('class', 'feedback');
         return;
     }else{
-        //add scores to local storage
-        localStorage.setItem('initials', initials.value.toLocaleUpperCase());
-        localStorage.setItem('score', finalScore.textContent);
+        
+        let newScore = `${initialsInput.value.toLocaleUpperCase()}: ${finalScore.textContent}`;
 
+        highscore.push(newScore);
+
+        //add scores to local storage
+        localStorage.setItem('highscore', JSON.stringify(highscore));
+    
         //provide user with msg so that they know their score has been added to the score board
         feedback.textContent = 'Score added to Highscores';
         feedback.setAttribute('class', 'feedback');
@@ -64,9 +71,11 @@ submitBtn.addEventListener('click', () => {
         submitBtn.disabled = true;
         submitBtn.style.backgroundColor = '#8570a5';
         submitBtn.style.cursor = 'not-allowed';
-    }
+    };
 });
 
+
+
 /**************** TODOS ************************/
-// check highscore page for "null: null" when no scores are saved in local storage
-// add multiple scores and arrange by highest score
+// add multiple scores 
+        //and maybe arrange by highest score...?

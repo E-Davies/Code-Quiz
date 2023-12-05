@@ -1,14 +1,22 @@
 let highscores = document.getElementById('highscores');
 let clearHightscores = document.getElementById('clear');
 
-let initial = localStorage.getItem('initials');
-let score = localStorage.getItem('score');
+let storedHighscore = JSON.parse(localStorage.getItem('highscore'));
 
-let li = document.createElement('li');
-li.textContent = `${initial}: ${score}`;
-highscores.appendChild(li);
+function renderHighscores(){
+
+    for(let i = 0; i < storedHighscore.length; i++){
+        let storedHighscores = storedHighscore[i];
+
+        let li = document.createElement('li');
+        li.textContent = storedHighscores;
+        highscores.appendChild(li);
+    }
+};
+renderHighscores();
 
 clearHightscores.addEventListener('click', () => {
     highscores.remove();
     localStorage.clear();
 });
+

@@ -63,14 +63,14 @@ choicesDiv.addEventListener('click', (event) => {
         if(eventTargetDataset === AnswerNeeded){
             console.log('correct answer clicked');
             //plays correct noise
-            correctSound.play();
+            // correctSound.play();
             // if user clicks the correct answer - change feedback text to 'Correct' 
             feedback.textContent = 'Correct';
             
         }else{
             console.log('incorrect answer clicked, 10secs deducted');
             //plays incorrect noise
-            incorrectSound.play();
+            // incorrectSound.play();
             // if user clicks wrong answer - change feedback text to 'Wrong' 
             feedback.textContent = 'Wrong';
             //and remove 10secs from timer
