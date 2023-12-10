@@ -39,3 +39,10 @@ Please use the following link to access the website: https://e-davies.github.io/
 ## Usage
 
 This application will be used by students looking to test their code knowledge and practice being under coding assessment conditions.
+
+## Technical skills used in this project
+
+* HTML
+* CSS
+* JavaScript
+* JSON
