@@ -73,5 +73,6 @@ submitBtn.addEventListener('click', () => {
     };
 });
 
-
+/**************** TODOS ************************/
+// Arrange highscores by highest score
 
